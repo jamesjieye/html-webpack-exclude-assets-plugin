@@ -44,6 +44,6 @@ plugins: [
   new HtmlWebpackPlugin({
     excludeAssets: /style.*.js/ // exclude style.js or style.[chunkhash].js 
   }),
-  new HtmlWebpackInlineSourcePlugin()
+  new HtmlWebpackExcludeAssetsPlugin()
 ]  
 ```
