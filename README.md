@@ -37,7 +37,7 @@ plugins: [
 
 The above configuration will actually do nothing due to the configuration defaults.
 
-When you set `excludeAssets` to an array of regular expressions, the matched assets will be skipped when the chunks are injected into the HTML template.
+When you set `excludeAssets` to an array of regular expressions or a single regular expression, the matched assets will be skipped when the chunks are injected into the HTML template.
 
 ```javascript
 plugins: [
