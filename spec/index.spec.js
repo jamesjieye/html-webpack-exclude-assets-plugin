@@ -50,7 +50,8 @@ describe('HtmlWebpackExcludeAssetsPlugin', function () {
     webpack({
       entry: {
         app: path.join(__dirname, 'fixtures', 'entry.js'),
-        style: [path.join(__dirname, 'fixtures', 'app.css')]
+        styleInclude: path.join(__dirname, 'fixtures', 'app.css'),
+        styleExclude: path.join(__dirname, 'fixtures', 'exclude.css')
       },
       output: {
         path: OUTPUT_DIR,
@@ -62,7 +63,7 @@ describe('HtmlWebpackExcludeAssetsPlugin', function () {
       plugins: [
         new ExtractTextPlugin('[name].css'),
         new HtmlWebpackPlugin({
-          excludeAssets: [/style.*.js/]
+          excludeAssets: [/styleInclude.*.js/, /styleExclude.*.css/]
         }),
         new HtmlWebpackExcludeAssetsPlugin()
       ]
@@ -72,8 +73,9 @@ describe('HtmlWebpackExcludeAssetsPlugin', function () {
       fs.readFile(htmlFile, 'utf8', function (er, data) {
         expect(er).toBeFalsy();
         var $ = cheerio.load(data);
-        expect($('script[src="style.js"]').toString()).toBe('');
-        expect($('link[href="style.css"]').toString()).toBe('<link href="style.css" rel="stylesheet">');
+        expect($('script[src="styleInclude.js"]').toString()).toBe('');
+        expect($('link[href="styleInclude.css"]').toString()).toBe('<link href="styleInclude.css" rel="stylesheet">');
+        expect($('link[href="styleExclude.css"]').toString()).toBe('');
         done();
       });
     });

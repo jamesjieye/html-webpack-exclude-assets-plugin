@@ -44,13 +44,13 @@ HtmlWebpackExcludeAssetsPlugin.prototype.processAssets = function (excludePatter
   var head = [];
 
   pluginData.head.forEach(function (tag) {
-    if (!self.isExcluded(excludePatterns, tag.attributes.src)) {
+    if (!self.isExcluded(excludePatterns, tag.attributes.src || tag.attributes.href)) {
       head.push(tag);
     }
   });
 
   pluginData.body.forEach(function (tag) {
-    if (!self.isExcluded(excludePatterns, tag.attributes.src)) {
+    if (!self.isExcluded(excludePatterns, tag.attributes.src || tag.attributes.href)) {
       body.push(tag);
     }
   });
