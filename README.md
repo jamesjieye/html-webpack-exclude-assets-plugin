@@ -5,8 +5,9 @@ Exclude Assets extension for the HTML Webpack Plugin
 Enhances [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin)
 functionality by adding the `{excludeAssets: RegExp | [RegExp]}` option to allow you to exclude assets.
 
-When adding an entry with third party css files, for example `style: ['bootstrap/dist/css/bootstrap.css']`, to webpack, the injected scripts include style.js or style.[chunkhash].js. The `excludeChunks` option of `html-webpack-plugin` will exclude both style.css and style.js. With this plugin, you can keep style.css in and style.js out by setting `excludeAssets: /style.*.js/`.
+When adding an entry with third party css files, for example, `style: ['bootstrap/dist/css/bootstrap.css']`, to webpack, the injected scripts include style.js or style.[chunkhash].js. The `excludeChunks` option of `html-webpack-plugin` will exclude both style.css and style.js. With this plugin, you can keep style.css in and style.js out by setting `excludeAssets: /style.*.js/`.
 
+You can also exclude CSS assets, for example, a theme CSS style, by setting `excludeAssets: /theme.*.css/`.
 
 Installation
 ------------
@@ -42,7 +43,7 @@ When you set `excludeAssets` to an array of regular expressions or a single regu
 ```javascript
 plugins: [
   new HtmlWebpackPlugin({
-    excludeAssets: /style.*.js/ // exclude style.js or style.[chunkhash].js 
+    excludeAssets: [/style.*.js/] // exclude style.js or style.[chunkhash].js 
   }),
   new HtmlWebpackExcludeAssetsPlugin()
 ]  
