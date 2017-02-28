@@ -46,6 +46,31 @@ describe('HtmlWebpackExcludeAssetsPlugin', function () {
     });
   });
 
+  it('should not get compilation warnings when skipping assets', function (done) {
+    webpack({
+      entry: {
+        app: path.join(__dirname, 'fixtures', 'entry.js'),
+        style: [path.join(__dirname, 'fixtures', 'app.css')]
+      },
+      output: {
+        path: OUTPUT_DIR,
+        filename: '[name].js'
+      },
+      module: {
+        loaders: [{ test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') }]
+      },
+      plugins: [
+        new ExtractTextPlugin('[name].css'),
+        new HtmlWebpackPlugin(),
+        new HtmlWebpackExcludeAssetsPlugin()
+      ]
+    }, function (err, stats) {
+      expect(err).toBeFalsy();
+      expect(stats.compilation.warnings.length).toBe(0);
+      done();
+    });
+  });
+
   it('should exclude assets when regex matches asset file names', function (done) {
     webpack({
       entry: {
