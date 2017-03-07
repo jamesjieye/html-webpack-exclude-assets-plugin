@@ -14,7 +14,7 @@ HtmlWebpackExcludeAssetsPlugin.prototype.apply = function (compiler) {
       var excludeAssets = htmlPluginData.plugin.options.excludeAssets;
       // Skip if the plugin configuration didn't set `excludeAssets`
       if (!excludeAssets) {
-        return callback(null);
+        return callback(null, htmlPluginData);
       }
 
       if (excludeAssets.constructor !== Array) {
@@ -55,7 +55,7 @@ HtmlWebpackExcludeAssetsPlugin.prototype.processAssets = function (excludePatter
     }
   });
 
-  return { head: head, body: body };
+  return { head: head, body: body, plugin: pluginData.plugin, chunks: pluginData.chunks, outputName: pluginData.outputName };
 };
 
 module.exports = HtmlWebpackExcludeAssetsPlugin;
