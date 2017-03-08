@@ -11,7 +11,9 @@ You can also exclude CSS assets, for example, a theme CSS style, by setting `exc
 
 Installation
 ------------
-You must be running webpack on node 0.12.x or higher
+You must be running webpack on Node v4.0.0 or higher.
+
+Note: `style-loader`'s dependency `loader-utils` only supports Node v4.0.0 since v1.0. See `style-loader`'s [#174 pull request](https://github.com/webpack-contrib/style-loader/pull/174) for details.
 
 Install the plugin with npm:
 ```shell
