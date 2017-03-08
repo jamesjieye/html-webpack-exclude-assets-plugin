@@ -55,7 +55,7 @@ HtmlWebpackExcludeAssetsPlugin.prototype.processAssets = function (excludePatter
     }
   });
 
-  return { head: head, body: body };
+  return { head: head, body: body, plugin: pluginData.plugin, chunks: pluginData.chunks, outputName: pluginData.outputName };
 };
 
 module.exports = HtmlWebpackExcludeAssetsPlugin;
