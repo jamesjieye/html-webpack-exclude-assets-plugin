@@ -1,6 +1,6 @@
 {
   "name": "html-webpack-exclude-assets-plugin",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Add the ability to exclude assets based on RegExp patterns",
   "main": "index.js",
   "files": [
@@ -23,6 +23,9 @@
     "exclude",
     "assets"
   ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "author": "James Ye <james.ye@hotmail.com> (https://github.com/jamesjieye)",
   "license": "MIT",
   "bugs": {
