@@ -14,7 +14,11 @@ HtmlWebpackExcludeAssetsPlugin.prototype.apply = function (compiler) {
       var excludeAssets = htmlPluginData.plugin.options.excludeAssets;
       // Skip if the plugin configuration didn't set `excludeAssets`
       if (!excludeAssets) {
-        return callback(null, htmlPluginData);
+        if (callback) {
+          return callback(null, htmlPluginData);
+        } else {
+          return Promise.resolve(htmlPluginData)
+        }
       }
 
       if (excludeAssets.constructor !== Array) {
@@ -27,7 +31,11 @@ HtmlWebpackExcludeAssetsPlugin.prototype.apply = function (compiler) {
       });
 
       var result = self.processAssets(excludePatterns, htmlPluginData);
-      callback(null, result);
+      if (callback) {
+        callback(null, result);
+      } else {
+        return Promise.resolve(result)
+      }
     });
   });
 };
