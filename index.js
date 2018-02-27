@@ -17,7 +17,7 @@ HtmlWebpackExcludeAssetsPlugin.prototype.apply = function (compiler) {
         if (callback) {
           return callback(null, htmlPluginData);
         } else {
-          return Promise.resolve(htmlPluginData)
+          return Promise.resolve(htmlPluginData);
         }
       }
 
@@ -34,7 +34,7 @@ HtmlWebpackExcludeAssetsPlugin.prototype.apply = function (compiler) {
       if (callback) {
         callback(null, result);
       } else {
-        return Promise.resolve(result)
+        return Promise.resolve(result);
       }
     });
   });
